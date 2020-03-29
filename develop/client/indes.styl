@@ -14,10 +14,10 @@ body
 	display: grid
 	grid-template-rows: auto 1fr auto
 	min-height: 100%
-	color: color.text
+	color: color-calm.text
 	min-width: 642px
 	::selection
-		background: color.background
+		background: color-calm.background
 		box-shadow: none
 		outline: 0px solid transparent
 	:focus
@@ -29,12 +29,174 @@ body
 	::-internal-autofill-selected:focus,
 	::-internal-autofill-selected:active
 		background-color: white !important
-		color: color.text
+		color: color-calm.text
 
 header
 	height: 54px
-	background: color.background
+	background: color-calm.background
 
 footer
-	height: 54px
+	height: 32px
 	color: color.extra
+
+main
+	margin: 24px
+	display: grid
+	grid-template-rows: 1fr
+	grid-template-columns: 1fr
+
+button
+	height: 32px
+	border: 0px solid transparent
+	padding: 0px 1.2em
+	background-color: color-calm.background
+	color: color-calm.title
+	&.active
+		background-color: color.link
+		cursor: pointer
+		&:hover
+			background-color: color-hover.link
+		&:active
+			background-color: color-active.link
+	&.waiting
+		background-color: color.info
+		&:hover
+			background-color: color-hover.info
+		&:active
+			background-color: color-active.info
+	&.error
+		background-color: color.error
+		&:hover
+			background-color: color-hover.error
+		&:active
+			background-color: color-active.error
+	&.warning
+		background-color: color.warning
+		&:hover
+			background-color: color-hover.warning
+		&:active
+			background-color: color-active.warning
+
+
+input, textarea
+	resize: vertical
+	display: block
+	flex-grow: 1
+	box-sizing: border-box
+	margin: 0px
+	padding: 0px
+	border: 0px solid transparent
+	appearance: none
+	color: rgb(89,89,89)
+	font: font.text
+
+	&[type=number]::-webkit-inner-spin-button,
+	&[type=number]::-webkit-outer-spin-button
+		appearance: none
+		margin: 0
+	&:focus
+		box-shadow: none
+		outline: 0px solid transparent
+
+	&::-webkit-input-placeholder
+		color: rgb(217, 217, 217)
+	&::-moz-input-placeholder
+		color: rgb(217, 217, 217)
+	&::-ms-input-placeholder
+		color: rgb(217, 217, 217)
+	&::input-placeholder
+		color: rgb(217, 217, 217)
+	&:-webkit-input-placeholder
+		color: rgb(217, 217, 217)
+	&:-moz-input-placeholder
+		color: rgb(217, 217, 217)
+	&:-ms-input-placeholder
+		color: rgb(217, 217, 217)
+	&:input-placeholder
+		color: rgb(217, 217, 217)
+
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus,
+	&:-webkit-autofill:active
+		background-color: white !important
+		color: rgb(89, 89, 89)
+
+	&:autofill,
+	&:autofill:hover,
+	&:autofill:focus,
+	&:autofill:active
+		background-color: white !important
+		color: rgb(89, 89, 89) !important
+
+	&:-internal-autofill-selected:hover,
+	&:-internal-autofill-selected:focus,
+	&:-internal-autofill-selected:active
+		background-color: white !important
+		color: rgb(89, 89, 89) !important
+
+	&[type="file"]
+		width: 0px
+		height: 0px
+		visibility: hidden
+
+	&[type="checkbox"] + cite
+		font: font.text
+		position: relative
+		display: flex
+		align-items: center
+		cursor: pointer
+		&:before
+			content: ""
+			position: absolute
+			right: 13px
+			top: 1px
+			bottom: 0px
+			height: 16px
+			width: 16px
+			border-radius: 16px
+			background: white
+			transition: margin-right .3s
+		&:after
+			content: ""
+			margin: 0px 12px
+			height: 18px
+			width: 28px
+			border-radius: 18px
+			background: color-calm.background
+	&[type="checkbox"]:checked + cite
+		cursor: pointer
+		&:before
+			margin-right: 10px
+			transition: margin-right .3s
+		&:after
+			background: color.info
+
+fieldset
+	border: 1px solid color-calm.background
+	margin: 0px
+	box-sizing: border-box
+	padding: 12px
+	legend
+		margin: 0px
+		padding: 0px 12px
+		[contenteditable]
+			padding: 0px
+			white-space: nowrap
+
+em
+	font: font.text
+
+label
+	padding: 0px 12px
+	display: inline-flex
+	align-items: center
+	border: 1px solid color-calm.extra
+	box-sizing: border-box
+
+[contenteditable]
+	padding: 0px 12px
+	margin: 0px
+	&[data-placeholder]:empty:before
+		content: attr(data-placeholder)
+		color: rgb(217, 217, 217)

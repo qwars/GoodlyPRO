@@ -15,11 +15,11 @@ color-calm = {
 	text: rgb( 64, 64, 64 )
 	title: rgb( 34, 34, 34 ),
 	extra: rgb( 176,176, 176 ),
-	link: rgb( 176,176, 176 ),
-	background: rgb( 176,176, 176 ),
+	link: rgb(61, 126, 154),
+	background: rgb(204, 204, 204),
 	error: rgb( 176,176, 176 ),
 	warning: rgb( 176,176, 176 ),
-	info: rgb( 176,176, 176 ),
+	info: rgb(194, 232, 249)
 }
 
 color = {}
@@ -27,9 +27,9 @@ color-hover = {}
 color-active = {}
 
 for p in keys( color-calm )
-	color[ p ] = color-calm[ p ]
-	color-hover[ p ] = color-calm[ p ]
-	color-active[ p ] = color-calm[ p ]
+	color[ p ] = darken( color-calm[ p ], 10% )
+	color-hover[ p ] = lightness( color-calm[ p ], 80% )
+	color-active[ p ] = lightness( color-calm[ p ], 60% )
 
 full-layer =
 	top: 0px

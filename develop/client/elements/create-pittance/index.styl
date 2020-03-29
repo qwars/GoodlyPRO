@@ -1,0 +1,22 @@
+
+.CreatePittance
+	display: flex
+	align-items: center
+	box-sizing: border-box
+	height: 32px
+	button
+		margin-left: 12px
+	input, label
+		align-self: stretch
+		height: 100%
+		width: 0px
+		padding: 0px
+		border-width: 0px
+		transition: padding .3s, border-width .3s, width .3s
+	&.active
+		label
+			border-width: 1px
+			padding: 0px 12px
+		input, label
+			width: 272px
+			transition: padding .3s, border-width .3s, width .3s

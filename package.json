@@ -36,6 +36,7 @@
         "http": "^0.0.1-security",
         "imba": "^1.5.2",
         "imba-router": "^0.4.0",
+        "moment": "^2.24.0",
         "websocket": "^1.0.31"
     }
 }
