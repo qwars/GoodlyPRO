@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/js/all.js'
 import './indes.styl'
 
 import 'imba-router'

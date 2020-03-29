@@ -42,8 +42,17 @@
 	grid-template-rows: 1fr
 	grid-template-columns: 1fr auto
 	grid-gap: 24px
-	fieldset > aside
+	fieldset > em
 		height: 32px
+		display: flex
+		align-items: center
+		justify-content: space-between
+		span
+			display: flex
+			align-items: center
+		kbd
+			font-size: 18px
+			margin-right: 12px
 		label
 			border-color: transparent
 	fieldset > form
@@ -68,10 +77,12 @@
 				grid-area: 1/1/2/2
 		address
 			display: grid
-			grid-template-columns: 1fr 32px
+			grid-template-columns: 1fr 18px
 			grid-template-rows: 32px 32px 32px
 			grid-auto-rows: auto
 			grid-gap: 12px
+			kbd
+				font-size: 21px
 			& > label:first-child
 				grid-area: 1/1/2/3
 	fieldset + fieldset > form

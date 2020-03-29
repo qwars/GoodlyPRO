@@ -10,12 +10,17 @@ export tag Pittance < article
 		<self>
 			<fieldset>
 				<legend> <pre contenteditable=true data-placeholder="Name for banner">
-				<aside>
-					<em>
-						<label>
-							<input type="checkbox">
-							<cite> "This is text? - "
-					<kbd>
+				<em>
+					<label>
+						<input type="checkbox">
+						<cite> "This is text? - "
+					<aside>
+						<span>
+							<kbd.link> <i.far.fa-object-ungroup>
+							<kbd.link> <i.fas.fa-chart-line>
+							<span> "Fashion: "
+							<b> 123
+						<kbd>
 				<form@dataElement :submit.prevent>
 					<label> <input type="text" placeholder="Title">
 					<label> <input type="url" placeholder="Link">
@@ -28,21 +33,21 @@ export tag Pittance < article
 					<address>
 						<label> <input type="text" placeholder="Name client">
 						<label> <input type="text" placeholder="Email client">
-						<kbd>
+						<kbd.link>  <i.fas.fa-plus-square>
 						<label> <input type="text" placeholder="Phone client">
-						<kbd>
-					<button> "Add new contact"
+						<kbd.link> <i.fas.fa-plus-square>
+					<button.info> "Add new contact"
 
 tag CongestionItem < Figure
 	def render
 		<self>
-			<del>
+			<del> <i.far.fa-trash-alt>
 			<aside>
 			<pre> "Description"
 			<time> "Time: { moment( Date.now ).format 'MMMM D, YYYY' }"
 			<figcaption>
 				<span> "Name"
-				<aside>
+				<aside> 
 
 export tag Congestion < article
 	def render
