@@ -1,0 +1,44 @@
+
+font-family = {
+	text: '-apple-system, "Segoe UI", system-ui, Roboto, "Noto Sans", "Helvetica Neue", sans-serfi',
+	title: '-apple-system, "Segoe UI", system-ui, Roboto, "Noto Sans", "Helvetica Neue", sans-serfi',
+	extra: '-apple-system, "Segoe UI", system-ui, Roboto, "Noto Sans", "Helvetica Neue", sans-serfi'
+}
+
+font = {
+	text: normal normal 400 normal 13px \/ normal unquote( font-family.text ),
+	title: normal normal 400 normal 13px \/ normal unquote( font-family.title ),
+	extra: normal normal 400 normal 13px \/ normal unquote( font-family.extra )
+}
+
+color-calm = {
+	text: rgb( 64, 64, 64 )
+	title: rgb( 34, 34, 34 ),
+	extra: rgb( 176,176, 176 ),
+	link: rgb( 176,176, 176 ),
+	background: rgb( 176,176, 176 ),
+	error: rgb( 176,176, 176 ),
+	warning: rgb( 176,176, 176 ),
+	info: rgb( 176,176, 176 ),
+}
+
+color = {}
+color-hover = {}
+color-active = {}
+
+for p in keys( color-calm )
+	color[ p ] = color-calm[ p ]
+	color-hover[ p ] = color-calm[ p ]
+	color-active[ p ] = color-calm[ p ]
+
+full-layer =
+	top: 0px
+	right: 0px
+	bottom: 0px
+	left: 0px
+	margin: auto
+
+output
+	{ full-layer }
+	position: fixed
+	z-index: -1

@@ -1,0 +1,12 @@
+
+version: '3.2'
+
+services:
+  goodlypro:
+    build: .
+    ports:
+      - 9090:9090
+      - 9091:9091
+    volumes:
+      - ./develop:/usr/src/app/develop:rw
+    command: "yarn develop --host 0.0.0.0"

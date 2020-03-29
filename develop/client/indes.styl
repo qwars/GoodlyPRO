@@ -1,0 +1,40 @@
+
+@import './css-ui-settings.styl';
+
+html
+	min-height: 100%
+	margin: 0px
+	padding: 0px
+	height: 100%
+
+body
+	margin 0px
+	padding: 0px
+	font: font.text
+	display: grid
+	grid-template-rows: auto 1fr auto
+	min-height: 100%
+	color: color.text
+	min-width: 642px
+	::selection
+		background: color.background
+		box-shadow: none
+		outline: 0px solid transparent
+	:focus
+		background: transparent
+		box-shadow: none
+		outline: 0px solid transparent
+
+	::-internal-autofill-selected:hover,
+	::-internal-autofill-selected:focus,
+	::-internal-autofill-selected:active
+		background-color: white !important
+		color: color.text
+
+header
+	height: 54px
+	background: color.background
+
+footer
+	height: 54px
+	color: color.extra
