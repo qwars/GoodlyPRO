@@ -6,6 +6,15 @@
 	height: 32px
 	button
 		margin-left: 12px
+		.fa-share-square
+			display: none
+		.fa-plus-square
+			display: inline-block
+		&.active
+			.fa-share-square
+				display: inline-block
+			.fa-plus-square
+				display: none
 	input, label
 		align-self: stretch
 		height: 100%

@@ -16,4 +16,7 @@ export tag CreatePittance < aside
 		<self .active=@active>
 			<label>
 				<input@dataset type="text" placeholder=placeholder required=true :blur.activeteFieldClose>
-			<button :tap.activeteField> title
+			<button :tap.activeteField .active=!!@dataset.value>
+				<i.far.fa-share-square>
+				<i.far.fa-plus-square>
+				<span> title

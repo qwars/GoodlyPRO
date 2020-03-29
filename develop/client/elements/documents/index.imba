@@ -36,7 +36,9 @@ export tag Pittance < article
 						<kbd.link>  <i.fas.fa-plus-square>
 						<label> <input type="text" placeholder="Phone client">
 						<kbd.link> <i.fas.fa-plus-square>
-					<button.info> "Add new contact"
+					<button.info>
+						<i.fas.fa-user-plus>
+						<span> "Add new contact"
 
 tag CongestionItem < Figure
 	def render
