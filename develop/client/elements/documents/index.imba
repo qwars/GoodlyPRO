@@ -49,7 +49,7 @@ tag CongestionItem < Figure
 			<time> "Time: { moment( Date.now ).format 'MMMM D, YYYY' }"
 			<figcaption>
 				<span> "Name"
-				<aside> 
+				<aside>
 
 export tag Congestion < article
 	def render
@@ -60,8 +60,12 @@ export tag Congestion < article
 				<dfn>
 					<.search-text>
 						<label> <input@search type="text" placeholder="Search text">
-						<button .active=!!@search.value> "Search"
+						<button .info=!!@search.value>
+							<i.fas.fa-search-plus>
+							<span> "Add a tag filtering"
 					<section>
 						<span>
+							<span> "Yee"
+							<del html="&#10005;">
 			<ul>
 				<li> <CongestionItem> for item in Array.new 20

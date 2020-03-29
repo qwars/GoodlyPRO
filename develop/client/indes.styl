@@ -52,6 +52,7 @@ button
 	padding: 0px 1.2em
 	background-color: color-calm.background
 	color: color-calm.title
+	white-space: nowrap
 	.svg-inline--fa + span
 		margin: 0px .8em
 	&.active
@@ -114,10 +115,19 @@ kbd, del
 		&:active
 			color: color-active.warning
 
-del:hover
-	color: color-hover.text
-del:active
-	color: color-active.text
+dfn
+	text-decoration: none
+	font: font.text
+
+del
+	text-decoration: none
+	font: font.text
+	.fa-trash-alt
+		transform: translateY(-1px)
+	&:hover
+		color: color-hover.text
+	&:active
+		color: color-active.text
 
 input, textarea
 	resize: vertical

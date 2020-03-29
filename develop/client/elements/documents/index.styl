@@ -1,3 +1,4 @@
+@import '../../css-ui-settings.styl';
 
 .Congestion
 	display: grid
@@ -19,13 +20,27 @@
 			grid-gap: 12px
 			.search-text
 				display: flex
+			section
+				padding-bottom: 12px
+				& > span
+					background-color: color.info
+					color: white
+					height: 18px
+					border-radius: 18px
+					padding-left: 12px
+					del
+						width: 24px
+						&:hover, &:active
+							color: white
+
 			label
 				flex-grow: 1
 				height: 32px
 				& + button
 					margin-left: 12px
 					display: none
-					&.active
+					width: 178px
+					&.info
 						display: inline-flex
 	ul
 		justify-self: center
