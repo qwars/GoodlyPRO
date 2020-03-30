@@ -52,6 +52,13 @@ tag CongestionItem < Figure
 				<aside>
 
 export tag Congestion < article
+
+	def createItemFilter
+		@search.value = '' if @search.value and not filtrate.includes( @search.value.trim ) and filtrate.create @search.value.trim
+
+	def removeItemFilter idx
+		filtrate.remove idx
+
 	def render
 		<self>
 			<blockquote>
@@ -59,13 +66,13 @@ export tag Congestion < article
 				<CreatePittance title="Create new banner" placeholder="Name for new banner">
 				<dfn>
 					<.search-text>
-						<label> <input@search type="text" placeholder="Search text">
-						<button .info=!!@search.value>
+						<label> <input@search type="text" placeholder="Search text" :keyup.enter.createItemFilter>
+						<button .info=!!@search.value :tap.createItemFilter >
 							<i.fas.fa-search-plus>
 							<span> "Add a tag filtering"
-					<section>
+					<section> for item, idx in filtrate
 						<span>
-							<span> "Yee"
-							<del html="&#10005;">
+							<span> item
+							<del :tap.removeItemFilter( idx ) html="&#10005;">
 			<ul>
 				<li> <CongestionItem> for item in Array.new 20

@@ -15,7 +15,7 @@ wsServer.on 'request', do|request|
 
 	connection.on 'message', do|message|
 		connection.sendUTF JSON.stringify
-			e: message
+			e: JSON.parse message:utf8Data
 
 	connection.on 'close', do|message|
 		console.dir message

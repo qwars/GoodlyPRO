@@ -16,7 +16,7 @@ tag Main < main
 			<Congestion route="/*$">
 			<Pittance route="/:id">
 
-Imba.mount <Application>
+Imba.mount <Application route="/(:id)*">
 Imba.mount <Header>
 Imba.mount <Main>
 Imba.mount <Footer>
