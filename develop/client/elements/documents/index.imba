@@ -8,6 +8,17 @@ import CreatePittance from '../create-pittance'
 import Widget as Loading from '../loading'
 import SummaryBlock as NoData from '../no-data'
 
+tag ClipImage
+	def render
+		<self> <svg:svg>
+			<svg:defs>
+				<svg:linearGradient id="gradient" x1="0" y1="00%" x2 ="0" y2="100%">
+					<svg:stop stop-color="black" offset="0">
+					<svg:stop stop-color="white" offset="1">
+			# <svg:mask id="masking" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+			# 	<svg:rect y="0.3" width="1" height=".7" fill="url(#gradient)">
+			# 	<svg:rect y="0.3" width="1" height=".7" fill="white">
+
 tag ContactItem < address
 	def render
 		<self>
@@ -120,15 +131,16 @@ export tag Pittance < article
 						<figure>
 							if condition:document:isText then <pre @documentData contenteditable=truedata-placeholder="Text for banner" :input.silence.updateDocumentData > condition:document:data
 							else
-								unless condition:document:data then <span> <i.far.fa-image>
-								else
-									<var> <img src=condition:document:data>
 								<label>
 									<aside>
 										if condition:document:data then <kbd> <i.far.fa-image>
 										if condition:document:data then <del :tap.prevent.stop.emptyData> <i.far.fa-trash-alt>
 										else if @backup:image then <kbd :tap.prevent.stop.reloadData> <i.fas.fa-sync-alt>
 									<input type="file" :change.preloadFile accept="image/*">
+								unless condition:document:data then <span> <i.far.fa-image>
+								else
+									<ClipImage[ condition:document:params ]>
+									<var> <img src=condition:document:data .masking=condition:document:clip>
 				<fieldset>
 					<legend> "Client contact"
 					<form@dataClient :submit.prevent>
