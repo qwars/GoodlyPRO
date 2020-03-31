@@ -192,6 +192,10 @@
 			grid-template-rows: 32px 32px 32px
 			grid-auto-rows: 32px
 			grid-gap: 12px
+			&:not(.new-element)
+				padding-bottom: 12px
+				margin-bottom: 12px
+				border-bottom: 1px solid color-calm.background
 			span
 				font: font.text
 				display: flex
@@ -208,4 +212,3 @@
 	fieldset + fieldset > form
 		width: 342px
 		grid-template-rows: auto
-
