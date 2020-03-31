@@ -26,8 +26,8 @@ wsServer.on 'request', do|request|
 
 	client:connect.on 'message', do|message|
 		message = JSON.parse message:utf8Data
-		if message:create then client:db.createElementCollection( message:create ).catch( do |e| console.log e ).then do clients.forEach do |item|
-			unless item:db.currentPage then item:db.source.catch( do |e| console.log e )
+		if message:create then client:db.createElementCollection( message:create ).catch( do |e| console.log e ).then do clients.forEach do |item, i|
+			unless i == iDx and item:db.currentPage then item:db.source.catch( do |e| console.log e )
 				.then do |response| item:connect.sendUTF JSON.stringify response
 		else if message:update then client:db.updateElementCollection( message:update ).catch( do |e| console.log e )
 		else if message:delete then client:db.deleteElementCollection( message:delete ).catch( do |e| console.log e ).then do clients.forEach do |item|
@@ -74,7 +74,7 @@ class DBase
 	def source message
 		Object.assign @state,  message if message isa Object
 		Promise.new do | resolve, reject |
-			if @state:id and message == @state:id then db.get "SELECT * FROM collection WHERE id=?", @state:id , do |err, row|
+			if @state:id then db.get "SELECT * FROM collection WHERE id=?", @state:id , do |err, row|
 				if err then reject err
 				else if @state:source:document = normaliseData row then resolve @state:source
 			else db.all "SELECT id, updatedAt, name, title, viewers, contacts FROM collection { filtrateWHERE() } ORDER BY updatedAt DESC LIMIT { currentPage * @state:limit }, { @state:limit }", do |err, rows|

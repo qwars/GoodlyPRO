@@ -36,7 +36,7 @@ export tag Pittance < article
 	def preloadFile e
 		let reader = FileReader.new
 		reader:onload = do |et| render if condition:document:data = et:target:result
-		reader.readAsDataURL e.target:files[0]
+		reader.readAsDataURL e.target.dom:files[0]
 
 	def backupData
 		@backup = {} unless @backup
@@ -53,12 +53,20 @@ export tag Pittance < article
 	def createComtact
 		Object.assign @contact, @_contact:default if  @contact:name and condition:document:contacts.push @contact
 
+	def emptyData
+		@backup = {} unless @backup
+		@backup:image = condition:document:data
+		condition:document:data = ''
+
+	def reloadData
+		condition:document:data = @backup:image
+
 	def render
 		<self :input.updateDocument :change.updateDocument>
 			unless condition and condition:document then <Loading>
 			else if condition:document isa String then <blockquote> condition:document
 			else
-				<fieldset>
+				<fieldset .element-is-text=condition:document:isText>
 					<legend> <pre@documentName contenteditable=true data-placeholder="Name for banner" :input.silence.updateDocumentName> condition:document:name
 					<em>
 						<div>
@@ -73,16 +81,54 @@ export tag Pittance < article
 								<kbd.link> <i.far.fa-object-ungroup>
 								<kbd.link> <i.fas.fa-chart-line>
 								<span> "Fashion: "
-								<b> condition:document:viewers
+								<b> condition:document:viewers || 0
 							<kbd>
 					<form@dataElement :submit.prevent>
 						<label> <input[ condition:document:title ] type="text" placeholder="Title">
 						<label> <input[ condition:document:link ] type="url" placeholder="Link">
-						<figure@documentData contenteditable=condition:document:isText contenteditable=true data-placeholder="Name for banner" :input.silence.updateDocumentData >
-							if condition:document:isText then condition:document:data
+						<.params-element>
+							<label>
+								<legend> "Width banner"
+								<input[ condition:document:params:width ] type="number" min=0 placeholder="Auto">
+							<label>
+								<legend> "Height banner"
+								<input[ condition:document:params:height ] type="number" min=0 placeholder="Auto">
+							<label>
+								<legend> "Position top banner"
+								<input[ condition:document:params:top ] type="number" placeholder="Auto">
+							<label>
+								<legend> "Position left banner"
+								<input[ condition:document:params:left ] type="number" placeholder="Auto">
+							<label>
+								<input[ condition:document:clip ] type="checkbox">
+								<cite> "This is clip? - "
+
+						if condition:document:clip then <.params-element>
+							<label>
+								<legend> "Clip top"
+								<input[ condition:document:params:ctop ] type="number" min=0 placeholder="Auto">
+							<label>
+								<legend> "Clip right"
+								<input[ condition:document:params:cright ] type="number" min=0 placeholder="Auto">
+							<label>
+								<legend> "Clip bottom"
+								<input[ condition:document:params:cbottom ] type="number" placeholder="Auto">
+							<label>
+								<legend> "Clip left"
+								<input[ condition:document:params:cleft ] type="number" placeholder="Auto">
+							<span>
+						<figure>
+							if condition:document:isText then <pre @documentData contenteditable=truedata-placeholder="Text for banner" :input.silence.updateDocumentData > condition:document:data
 							else
-								<img src=condition:document:data> if condition:document:data
-								<label> <input type="file" :change.preloadFile accept="image/*">
+								unless condition:document:data then <span> <i.far.fa-image>
+								else
+									<var> <img src=condition:document:data>
+								<label>
+									<aside>
+										if condition:document:data then <kbd> <i.far.fa-image>
+										if condition:document:data then <del :tap.prevent.stop.emptyData> <i.far.fa-trash-alt>
+										else if @backup:image then <kbd :tap.prevent.stop.reloadData> <i.fas.fa-sync-alt>
+									<input type="file" :change.preloadFile accept="image/*">
 				<fieldset>
 					<legend> "Client contact"
 					<form@dataClient :submit.prevent>

@@ -83,6 +83,10 @@
 		& > * ,span
 			display: flex
 			align-items: center
+		b
+			padding: .8em
+			font-size: 21px
+			line-height: 18px
 		kbd
 			font-size: 18px
 			margin-right: 12px
@@ -94,6 +98,67 @@
 		grid-template-rows: 32px 32px
 		grid-auto-rows: auto
 		grid-gap: 12px
+		position: relative
+		.params-element
+			position: relative
+			display: grid
+			grid-template-rows: 32px
+			grid-template-columns: repeat( 4, .2fr ) 1fr
+			label:last-child
+				min-width: 160px
+				max-width: 160px
+			& ~ figure
+				border: 1px solid color-calm.background
+				position: relative
+				aside
+					position: absolute
+					top: 0px
+					right: 0px
+					display: flex
+					align-items: center
+					height: 0px
+					padding: 0px .8em
+					z-index: 5
+					kbd
+						margin-right: .8em
+					kbd, del
+						background: white
+						width: 21px
+						height: 21px
+						color: color-calm.background
+						cursor: pointer
+				var
+					display: flex
+					align-items: center
+					justify-content: center
+					margin: 40px
+					z-index: 2
+				label
+					cursor: pointer
+					position: absolute
+					top: 0px
+					right: 0px
+					bottom: 0px
+					left: 0px
+					margin: auto
+					z-index: 1
+				& > span
+					font-size: 92px
+					display: flex
+					align-items: center
+					justify-content: center
+					padding: 40px
+					opacity: .3
+			label
+				display: flex
+				flex-wrap: nowrap
+				border: 0px solid transparent
+				legend
+					margin-right: 12px
+					white-space: nowrap
+				input
+					flex-grow: 1
+					max-width: 4em
 		figure
 			margin: 0px
 			padding: 0px
