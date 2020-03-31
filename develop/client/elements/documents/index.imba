@@ -20,19 +20,28 @@ tag ClipImage
 			# 	<svg:rect y="0.3" width="1" height=".7" fill="white">
 
 tag ContactItem < address
+	def removeItem
+		trigger 'remove', self
+
+	def removeEmail idx
+		updateDocument if data:emails.splice idx, 1
+
+	def removePhone idx
+		updateDocument if data:phones.splice idx, 1
+
 	def render
 		<self>
 			<label> <input[ data:name ] .new-element=hasFlag('new-element') type="text" placeholder="Name client" required=true>
-			<del> <i.far.fa-trash-alt>
+			<del :tap.removeItem> <i.far.fa-trash-alt>
 			for item, idx in data:emails
 				<span> item
-				<del :tap=( do data:emails.splice idx, 1 )> <i.far.fa-trash-alt>
-			<label> <input@contactEmail type="email" .new-element=hasFlag('new-element') placeholder="Email client" required=true>
+				<del :tap.removeEmail(idx)> <i.far.fa-trash-alt>
+			<label> <input.new-element@contactEmail type="email" placeholder="Email client" required=true>
 			<kbd.link :tap=( do @contactEmail.value = '' if @contactEmail.dom:validity:valid and data:emails.push @contactEmail.value )>  <i.fas.fa-plus-square>
 			for item, idx in data:phones
 				<span> item
-				<del :tap=( do data:phones.splice idx, 1 )> <i.far.fa-trash-alt>
-			<label> <input@contactPhone .new-element=hasFlag('new-element') type="text" placeholder="Phone client" required=true>
+				<del :tap.removePhone(idx)> <i.far.fa-trash-alt>
+			<label> <input.new-element@contactPhone type="text" placeholder="Phone client" required=true>
 			<kbd.link :tap=( do @contactPhone.value = '' if @contactPhone.dom:validity:valid and data:phones.push @contactPhone.value   )> <i.fas.fa-plus-square>
 
 export tag Pittance < article
@@ -62,7 +71,14 @@ export tag Pittance < article
 		condition:document:name = @documentName.dom:innerHtml
 
 	def createComtact
-		Object.assign @contact, @_contact:default if  @contact:name and condition:document:contacts.push @contact
+		let formElement = querySelector '.ContactItem.new-element'
+		if formElement.@contactPhone.dom:validity:valid then @contact:phones.push formElement.@contactPhone.value
+		if formElement.@contactEmail.dom:validity:valid then @contact:emails.push formElement.@contactEmail.value
+		formElement.@contactEmail.value = formElement.@contactPhone.value = ''
+		Object.assign @contact, @_contact:default if  @contact:name and condition:document:contacts.push Object.assign {}, @contact
+
+	def removeContact idx
+		if condition:document:contacts.splice idx, 1 then updateDocument
 
 	def emptyData
 		@backup = {} unless @backup
@@ -135,7 +151,7 @@ export tag Pittance < article
 									<aside>
 										if condition:document:data then <kbd> <i.far.fa-image>
 										if condition:document:data then <del :tap.prevent.stop.emptyData> <i.far.fa-trash-alt>
-										else if @backup:image then <kbd :tap.prevent.stop.reloadData> <i.fas.fa-sync-alt>
+										else if @backup and @backup:image then <kbd :tap.prevent.stop.reloadData> <i.fas.fa-sync-alt>
 									<input type="file" :change.preloadFile accept="image/*">
 								unless condition:document:data then <span> <i.far.fa-image>
 								else
@@ -144,7 +160,7 @@ export tag Pittance < article
 				<fieldset>
 					<legend> "Client contact"
 					<form@dataClient :submit.prevent>
-						<ContactItem[ item ]> for item, index in condition:document:contacts
+						<ContactItem[ item ] :remove.removeContact(index)> for item, index in condition:document:contacts
 						<ContactItem.new-element[ @contact ]>
 						<button.info :tap.createComtact>
 							<i.fas.fa-user-plus>
