@@ -1,0 +1,35 @@
+
+@keyframes spin
+	50%
+		transform: rotateY(90deg)
+		transform: rotateY(90deg)
+
+@keyframes fadeOnTo
+	0%
+		opacity: .1
+	50%
+		opacity: .2
+	100%
+		opacity: .1
+
+.loading-page
+	padding: .2em
+	background-color: rgba( 255, 255, 255, .75)
+	display: flex
+	align-items: center
+	justify-content: center
+	font-size: 6em
+	svg
+		opacity: .1
+		animation: spin 3s linear infinite, fadeOnTo 4.3s ease-in-out infinite
+
+	& + *
+		filter: blur(.05em)
+
+.loading
+	display: inline-flex
+	align-items: center
+	span
+		padding-left: .3em
+	svg
+		animation: spin 3s linear infinite

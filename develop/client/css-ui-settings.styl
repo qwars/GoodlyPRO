@@ -42,3 +42,19 @@ output
 	{ full-layer }
 	position: fixed
 	z-index: -1
+	display: grid
+	grid-gap: 12px
+	grid-template-columns: repeat(auto-fill, 266px)
+	grid-template-rows: repeat(auto-fill, 172px)
+	grid-gap: 12px
+	@media (max-width: 591px)
+		max-width: 266px
+	@media (max-width: 870px) and (min-width: 592px)
+		max-width: 591px
+	@media (max-width: 1148px) and (min-width: 871px)
+		max-width: 870px
+	@media (max-width: 1426px) and (min-width: 1149px)
+		max-width: 1148px
+	@media (min-width: 1427px)
+		max-width: 1426px
+

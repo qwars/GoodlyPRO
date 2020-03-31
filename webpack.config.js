@@ -18,7 +18,7 @@ const frontend = {
                 subprocess.killPID = subprocess.server.codePID && command.execSync( `kill -9 ${ subprocess.server.codePID }` );
                 subprocess.server.kill();
                 subprocess.codeData = UglifyJS.minify( `${ data }` ).code;
-                subprocess.server = command.exec(`node -e '( function(){ ${ subprocess.codeData } })( console.log("Start server PID: ", process.pid ) )'`);
+                subprocess.server = command.exec(`node -e '( function(){ ${ subprocess.codeData } } )( console.log("Start server PID: ", process.pid ) )'`);
                 subprocess.server.stdout.on('data', (data) => {
                     if ( typeof subprocess.killPID !== 'string' && data.toString().includes('Start server PID') ) {
                         let message = subprocess.killPID === undefined ? 'START' : 'RESTART'

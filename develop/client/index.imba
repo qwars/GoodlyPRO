@@ -17,6 +17,6 @@ tag Main < main
 			<Pittance route="/:id">
 
 Imba.mount <Application route="/(:id)*">
-Imba.mount <Header>
-Imba.mount <Main>
-Imba.mount <Footer>
+Imba.mount <Header :taproute=( do Imba.commit )>
+Imba.mount <Main :taproute=( do Imba.commit )>
+Imba.mount <Footer :taproute=( do Imba.commit )>

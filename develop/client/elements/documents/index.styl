@@ -5,6 +5,7 @@
 	grid-template-rows: auto 1fr
 	grid-template-columns: 1fr
 	place-self: stretch
+	position: relative
 	blockquote
 		margin: 0px
 		padding: 0px
@@ -52,9 +53,21 @@
 		margin: 0px
 		padding: 0px
 		display: grid
-		grid-template-rows: repeat( 4, 172px )
-		grid-template-columns: repeat( 5, 266px )
+		grid-template-columns: repeat(auto-fill, 266px)
+		grid-template-rows: repeat(auto-fill, 172px)
 		grid-gap: 12px
+		@media (max-width: 591px)
+			max-width: 266px
+		@media (max-width: 870px) and (min-width: 592px)
+			max-width: 591px
+		@media (max-width: 1148px) and (min-width: 871px)
+			max-width: 870px
+		@media (max-width: 1426px) and (min-width: 1149px)
+			max-width: 1148px
+		@media (min-width: 1427px)
+			max-width: 1426px
+		li
+			cursor: pointer
 
 .Pittance
 	display: grid
@@ -66,7 +79,8 @@
 		display: flex
 		align-items: center
 		justify-content: space-between
-		span
+		margin-bottom: 12px
+		& > * ,span
 			display: flex
 			align-items: center
 		kbd
@@ -100,10 +114,19 @@
 			grid-template-rows: 32px 32px 32px
 			grid-auto-rows: auto
 			grid-gap: 12px
+			span
+				font: font.text
+				display: flex
+				align-items: center
+			&.new-element > label:first-child
+				grid-area: 1/1/2/3
+				& + del
+					display: none
+
 			kbd
 				font-size: 21px
-			& > label:first-child
-				grid-area: 1/1/2/3
+			del
+				font-size: 17px
 	fieldset + fieldset > form
 		width: 342px
 		grid-template-rows: auto
